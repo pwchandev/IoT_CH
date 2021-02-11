@@ -1,0 +1,48 @@
+% Read the latest temperature from a ThingSpeak channel 
+% and determine whether it need to turn on the LED or not. 
+% Write the decision (0 or 1) to another ThingSpeak channel - logic. 
+
+% Channel ID to read data from 
+readChannelID = 1213704; 
+% Temperature Field ID 
+temperatureFieldID = 1; 
+
+% Channel Read API Key 
+% If your channel is private, then enter the read API 
+% Key between the '' below: 
+readAPIKey = 'EYQW0OQRTEL0Y9ZB'; 
+
+% Read the latest temperature data. 
+% Learn more about the THINGSPEAKREAD function by going to the Documentation tab on
+% the right side pane of this page. 
+
+temp = thingSpeakRead(readChannelID,'Fields',temperatureFieldID,'ReadKey',readAPIKey); 
+
+% Check the temperature and provide result
+decision = 0;
+if temp > 30
+   decision = 1;
+end;
+display(temp,'Temperature in Celsius');
+display(decision, 'Decision to turn ON/OFF led');
+
+% fprintf(['Note: To write data to another channel, assign the write channel ID \n',... 
+%    'and API Key to ''writeChannelID'' and  ''writeAPIKey'' variables. Also \n',...
+%    'uncomment the line of code containing ''thingSpeakWrite'' \n',... 
+%    '(remove ''%%'' sign at the beginning of the line.)']); 
+
+% To store the decision, write it to a channel other than 
+% the one used for reading data. To write to a channel, assign the write 
+% channel ID to the 'writeChannelID' variable, and the write API Key to the 
+% 'writeAPIKey' variable below. Find the write API Key in the right side pane 
+% of this page. 
+
+% Replace the [] with channel ID to write data to: 
+writeChannelID = 1214172; 
+% Enter the Write API Key between the '' below: 
+writeAPIKey = '10KR3CW1VERZCB3E'; 
+     
+% Learn more about the THINGSPEAKWRITE function by going to the Documentation tab on 
+% the right side pane of this page. 
+
+thingSpeakWrite(writeChannelID,[decision],'WriteKey',writeAPIKey); 
