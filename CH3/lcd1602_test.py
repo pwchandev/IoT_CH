@@ -8,3 +8,6 @@ while True:
     sleep(3)
     mylcd.lcd_clear()
     sleep(1)
+    
+mylcd.lcd_clear()
+sleep(1)

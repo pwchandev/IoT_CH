@@ -8,7 +8,7 @@ ADC_DIO = 18
 
 def setup():
 	GPIO.setwarnings(False)
-	GPIO.setmode(GPIO.BCM)          #Number GPIOs by its logical location
+	GPIO.setmode(GPIO.BCM)          #Number GPIOs by its physical location
 	GPIO.setup(ADC_CS, GPIO.OUT)
 	GPIO.setup(ADC_CLK, GPIO.OUT)
 
